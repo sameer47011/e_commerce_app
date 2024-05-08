@@ -29,12 +29,12 @@ const Loader = ({ modalVisible, setModalVisible }) => {
                     shadowRadius: 4,
                     elevation: 5,
                     justifyContent: 'center',
-                    alignSelf: 'center'
+                    alignItems: 'center'
                 }}>
+            <ActivityIndicator size={'large'} />
 
                 </View>
             </View>
-            <ActivityIndicator size={'large'} />
         </Modal>
     )
 }
