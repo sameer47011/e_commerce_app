@@ -6,9 +6,12 @@ import Search from '../bottom/Search'
 import Cart from '../bottom/Cart'
 import Wishlist from '../bottom/Wishlist'
 import Profile from '../bottom/Profile'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
   const [setselectedTab, setSetselectedTab] = useState(0)
+  const data = useSelector(state=>state);
+  console.log(data);
   return (
     <View style={{ flex: 1 }}>
       {setselectedTab == 0 ? (<Main />) : setselectedTab == 1 ? (<Search />) : setselectedTab == 2 ? (<Cart />) : setselectedTab == 3 ? (<Wishlist />) : (<Profile />)}
@@ -39,7 +42,7 @@ const Home = () => {
         </TouchableOpacity>
 
         <View style={{ width: '20%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-          <TouchableOpacity style={{ width: 44, height: 44, backgroundColor:setselectedTab==2?'green':'#000', borderRadius: 22, justifyContent: 'center', alignItems: 'center' }}
+          <TouchableOpacity style={{ width: 44, height: 44, backgroundColor: setselectedTab == 2 ? 'green' : '#000', borderRadius: 22, justifyContent: 'center', alignItems: 'center' }}
             onPress={() => {
               setSetselectedTab(2)
             }}
@@ -48,6 +51,9 @@ const Home = () => {
               width: 24, height: 24, tintColor
                 : '#fff',
             }} />
+            <View style={{ width: 20, height: 20, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 5, right: 3 }}>
+              <Text style={{ color: '#fff', fontWeight: '600' }}>{data.Reducers.length}</Text>
+            </View>
           </TouchableOpacity>
 
         </View>
@@ -58,6 +64,9 @@ const Home = () => {
           }}
         >
           <Image source={require('../images/heart.png')} style={{ width: 24, height: 24, tintColor: setselectedTab == 3 ? '#000' : '#8e8e8e' }} />
+          <View style={{ width: 20, height: 20, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 15, right: 20}}>
+            <Text style={{ color: '#fff', fontWeight: '600' }}>{data.Reducers2.length}</Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ width: '20%', height: '100%', justifyContent: 'center', alignItems: 'center' }}

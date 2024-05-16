@@ -1,16 +1,15 @@
-import { ADD_To_CART, REMOVE_FROM_CART } from "../ActionType";
-
-const reducers = (initialState = [], actions) => {
-    switch (actions) {
+import { ADD_TO_WISHLIST, ADD_To_CART, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST } from "../ActionType";
+const Reducers = (state = [], action) => {
+    switch (action.type) {
         case ADD_To_CART:
-            return [...initialState, ...actions.payload];
+            return [...state, action.payload];
         case REMOVE_FROM_CART:
-            const deletedArray = initialState.filter((item, index) => {
-                return index !== actions.payloadd;
+            const deletedArray1 = state.filter((item, index) => {
+                return index !== action.payload;
             });
-            return deletedArray;
-            default :
-            return initialState
+            return deletedArray1;
+        default:
+            return state
     }
 }
-export default reducers
+export default Reducers

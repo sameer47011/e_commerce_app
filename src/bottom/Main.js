@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react'
 import Header from '../Common/Header'
 import { products } from '../Products'
 import MyProductItem from '../Common/MyProductItem'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItemToCart, addToWishlist } from '../redux/action/Actions'
 
 const Main = () => {
+  const dispatch =useDispatch();
   const [categoryList, setCategoryList] = useState([])
   const [tshirtList, setTshirtList] = useState([])
   const [jeansList, setJeansList] = useState([])
@@ -26,9 +29,10 @@ const Main = () => {
     setSlipperList(products.category[4].data);
 
   }, [])
+  // const items = useSelector(state=>state)
+  // console.log(items)
   return (
-    <ScrollView style={{ flex: 1,marginBottom:50 }} showsVerticalScrollIndicator={false}>
-
+    <ScrollView style={{ flex: 1, marginBottom: 50 }} showsVerticalScrollIndicator={false}>
       <View style={{ flex: 1 }}>
         <Header />
         <Image source={require('../images/banner.jpg')} style={{
@@ -68,7 +72,15 @@ const Main = () => {
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => {
               return (
-                <MyProductItem item={item} />
+                <MyProductItem item={item} 
+                onAddWishlist={(x)=>{
+                  dispatch(addToWishlist(x))
+                }}
+                onAddToCart={(x)=>{
+                  dispatch(addItemToCart(item))
+                }}
+                
+                 />
               )
             }}
           />
@@ -85,62 +97,90 @@ const Main = () => {
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => {
               return (
-                <MyProductItem item={item} />
+                <MyProductItem item={item} 
+                onAddWishlist={(x)=>{
+                  dispatch(addToWishlist(x))
+                }}
+                onAddToCart={(x)=>{
+                  dispatch(addItemToCart(item))
+                }}
+                />
               )
             }}
           />
         </View>
 
         <Text style={{
-        marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
-        fontWeight: '600'
-      }}>New Shoes</Text>
-       <View style={{marginTop:20}}>
-        <FlatList
-        data={shoesList}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item,index})=>{
-          return(
-           <MyProductItem item={item}/>
-          )
-        }}
-        />
-      </View>
+          marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
+          fontWeight: '600'
+        }}>New Shoes</Text>
+        <View style={{ marginTop: 20 }}>
+          <FlatList
+            data={shoesList}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item, index }) => {
+              return (
+                <MyProductItem item={item}
+                onAddWishlist={(x)=>{
+                  dispatch(addToWishlist(x))
+                }}
+                onAddToCart={(x)=>{
+                  dispatch(addItemToCart(item))
+                }}
+                />
+              )
+            }}
+          />
+        </View>
 
-      <Text style={{
-        marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
-        fontWeight: '600'
-      }}>New Jacket</Text>
-       <View style={{marginTop:20}}>
-        <FlatList
-        data={jacketList}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item,index})=>{
-          return(
-           <MyProductItem item={item}/>
-          )
-        }}
-        />
-      </View>
+        <Text style={{
+          marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
+          fontWeight: '600'
+        }}>New Jacket</Text>
+        <View style={{ marginTop: 20 }}>
+          <FlatList
+            data={jacketList}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item, index }) => {
+              return (
+                <MyProductItem item={item}
+                onAddWishlist={(x)=>{
+                  dispatch(addToWishlist(x))
+                }}
+                onAddToCart={(x)=>{
+                  dispatch(addItemToCart(item))
+                }}
+                />
+              )
+            }}
+          />
+        </View>
 
-      <Text style={{
-        marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
-        fontWeight: '600'
-      }}>New Slipper</Text>
-       <View style={{marginTop:20}}>
-        <FlatList
-        data={slipperList}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item,index})=>{
-          return(
-           <MyProductItem item={item}/>
-          )
-        }}
-        />
-      </View>
+        <Text style={{
+          marginTop: 20, marginLeft: 20, color: '#000', fontSize: 16,
+          fontWeight: '600'
+        }}>New Slipper</Text>
+        <View style={{ marginTop: 20 }}>
+          <FlatList
+            data={slipperList}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item, index }) => {
+              return (
+                <MyProductItem item={item}
+                onAddWishlist={(x)=>{
+                  dispatch(addToWishlist(x))
+                }}
+                onAddToCart={(x)=>{
+                  dispatch(addItemToCart(item))
+                }}
+                />
+              )
+            }}
+          />
+        </View>
       </View>
     </ScrollView>
 
